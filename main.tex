@@ -1,0 +1,169 @@
+\documentclass[12pt, letterpaper]{article}
+\usepackage{amsmath} % Required for mathematical symbols
+\usepackage{amssymb} % Required for more mathematical symbols
+\usepackage{amsthm}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{enumitem} % For smaller bullet points
+\usepackage{hyperref}
+\usepackage{pifont}  % für \ding und \xmark
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=20mm,
+ top=20mm,
+ }
+
+\newcommand{\checkmark}{\ding{51}} % Definiert das Häkchen für True (Richtig)
+\newcommand{\xmark}{\ding{55}} % Definiert das X für False (Kreuz)
+
+\title{Informatik 1 Übungsblatt 1}
+\author{Hendrik Kleine Vennekate, Lars-Ole Schlichting}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\paragraph{Aufgabe 1}
+
+\begin{enumerate}
+    \item[(a)] $(2^p)^q = 2^{(p^q)}$ \xmark\\ \\
+        $(2^2)^3 = 64$, $2^{(2^3)} = 256$
+    \item[(b)] $(2^p)^q = 2^{pq}$ \checkmark
+    \item[(c)] $2^p \cdot 2^q = 2^{pq}$ \xmark\\ \\
+        $2^2 \cdot 2^3 = 16$, $2^{(2 \cdot 3)} = 64$
+    \item[(d)] $\frac{2^p}{2^q} = 2^{\frac{p}{q}}$ \xmark\\ \\
+        $\frac{2^6}{2^2} = 16$, $2^{\frac{6}{2}} = 8$
+    \item[(e)] $\frac{x \ \text{GiB}}{1 \ \text{KiB}} = x \cdot 2^{20}$ \checkmark
+\end{enumerate}
+
+\paragraph{Aufgabe 2}
+
+\noindent Zur Darstellung des ASCII-Codes als Dezimal-, Binär-, und Hexadezimalzahlen gibt es verschiedene Online-Tools. Wir haben bspw: \href{https://www.rapidtables.com/convert/number/ascii-hex-bin-dec-converter.html}{Rapidtables} genutzt.
+
+\begin{enumerate}
+    \item ASCII-Code: Ist das schwierig?
+    \item Dezimal: 73 115 116 32 100 97 115 32 115 99 104 119 105 101 114 105 103 63
+    \item Binär: 01001001 01110011 01110100 00100000 01100100 01100001 01110011 00100000 01110011 01100011 01101000 01110111 01101001 01100101 01110010 01101001 01100111 00111111
+    \item Hex: 49 73 74 20 64 61 73 20 73 63 68 77 69 65 72 69 67 3F
+\end{enumerate}
+
+\noindent Alternativ gibt es Tabellen, die eine einfache Übersetzung in verschiedene Zahlensysteme gewährleisten.
+
+\paragraph{Aufgabe 3}
+
+\noindent Sei $b_i$ ein Bit mit $0 < i < (n - 1)$. Außerdem sei $n \in \mathbb{N}$ mit $n \geq 2$. 
+
+\paragraph{Allgemeine Formel für positive Zahlen (MSB = 0):}
+\[
+(b_{n-1}b_{n-2}\dots b_0)_2 = \sum_{i=0}^{n-1} b_i \cdot 2^i
+\]
+
+\paragraph{Allgemeine Formel für negative Zahlen (MSB = 1):}
+\[
+(b_{n-1}b_{n-2}\dots b_0)_2 = -b_{n-1} \cdot 2^{n-1} + \sum_{i=0}^{n-2} b_i \cdot 2^i
+\]
+
+\paragraph{(a)}
+
+0110 0100\\
+
+\noindent Da das MSB 0 ist, handelt es sich bei der Binärzahl um eine positive Zahl.\\
+
+\noindent $0110\ 0100_2 = 0 \cdot 2^7 + 1 \cdot 2^6 + 1 \cdot 2^5 + 0 \cdot 2^4 + 0 \cdot 2^3 + 1 \cdot 2^2 + 0 \cdot 2^1 + 0 \cdot 2^0 = 100$ 
+
+\paragraph{(b)}
+
+1100 0110\\
+
+\noindent Da das MSB 1 ist, handelt es sich bei der Binärzahl um eine negative Zahl.\\
+
+\noindent $1100\ 0110_2 = -1 \cdot 2^7 + 1 \cdot 2^6 + 0 \cdot 2^5 + 0 \cdot 2^4 + 0 \cdot 2^3 + 1 \cdot 2^2 + 1 \cdot 2^1 + 0 \cdot 2^0 = -58$
+
+\paragraph{Aufgabe 4}
+
+Für diese Aufgabe betrachten wir das hypothetische Beispiel von 8-Bit-Gleitkommezahlen, wobei drei Bits für den Exponenten und vier Bits für die Mantisse genutzt wird.\\ Die allgemeine Formel für den Wert einer Gleitkommazahl mit 32 Bits nach IEEE 754 lautet:\\
+
+$$(-1)^v \left( \sum_{i=0}^{n-1} a_i 2^{-i} \right) 2^{\overline{e} - 127}$$\\
+
+\noindent Für unseren Fall einer 8-Bit-Gleitkommazahl ändern wir die Formel zu:\\
+
+$$(-1)^v \left( \sum_{i=0}^{n-1} a_i 2^{-i} \right) 2^{\overline{e} - 3}$$\\
+
+\paragraph{(a)} $01001000_2$ \newline
+
+\noindent Das MSB ist in diesem Fall = $0$, d.h. dass unser $v = 0$. Unser $n = 5$, da die Mantisse 4 explizite Bits und die implizite 1 umfasst, die am Anfang der Mantisse steht. Daher läuft unsere Summe von $i = 0$ bis $n - 1 = 4$.
+Unser $Exponent = \overline{e} = 100_2$. Im Dezimalsystem ist unser Exponent $= 4$, da $1 \cdot 2^{2} + 0 \cdot 2^{1} + 0 \cdot 2^{0} = 4$.\\Wir setzen in die Formel ein:\\
+
+$$(-1)^0 \left( \sum_{i=0}^{4} a_i 2^{-i} \right) 2^{4 - 3} = \left( \sum_{i=0}^{4} a_i 2^{-i} \right) 2$$\\
+
+\noindent Berechnet man die Summe ergibt sich:\\
+
+$$(1 \cdot 2^{0} + 1 \cdot 2^{-1} + 0 \cdot 2^{-2} + 0 \cdot 2^{-3} + 0 \cdot 2^{-4})\cdot 2 = 3$$\\
+
+\noindent Das bedeutet, dass die Dezimalzahl 3 durch die Bitfolge $01001000_2$ in unserem hypothetischen Beispiel repräsentiert wird.
+
+\paragraph{(b)} Durch welche Bit-Folge wird $0.75$ repräsentiert?\newline
+
+\noindent Da unsere Zahl positiv ist, ist unser $v = 0$. Wir wollen $0.75$ als Binärzahl darstellen und gehen nach folgendem Schema vor:
+
+\begin{enumerate}
+    \item Starte mit den Nachkommastellen der Dezimalzahl, die du in Binärform umwandeln möchtest. Nennen wir diese Zahl $f$.
+    
+    \item Multipliziere $f$ mit 2:
+    $
+    f' = f \cdot 2
+    $
+    
+    \item Überprüfe den Ganzzahlanteil von $f'$:
+    \begin{itemize}[label=$\circ$]
+        \item Wenn der Ganzzahlanteil von $f'$ gleich 1 ist, notiere eine $1$ und setze $f = f' - 1 $.
+        \item Wenn der Ganzzahlanteil von $f'$ gleich 0 ist, notiere eine $0$ und setze $f = f'$.
+    \end{itemize}
+    
+    \item Wiederhole die Schritte 2 und 3, indem du $f$ jedes Mal erneut mit 2 multiplizierst, bis $f = 0$ ist oder bis die gewünschte Genauigkeit erreicht ist.
+\end{enumerate}
+
+\noindent In unserem Fall wenden wir den Algorithmus auf $0.75$ an.\newline
+
+\begin{tabular}{r|l}
+ $0.75 \cdot 2 = 1.5$ & $1$ \\
+ $0.5 \cdot 2 = 1$ & $1$ \\
+ $0$ & $0$
+\end{tabular}\newline\newline
+
+\noindent Also lautet die binäre Darstellung unserer 0.75: $0.11_2$\\
+\noindent Wir wollen unser Komma so verschieben, dass eine einzige 1 links vom Komma steht, also in unserem Beispiel um eine Stelle nach rechts, was -1 Stellen entspricht. Analog wäre 1 Stelle = Einer Verschiebung nach links. Da unser Exponent in unserem Beispiel 3 entspricht, rechnen wir $3 - 1 = 2$.
+Die 2 übertragen wir ins Binärsystem und erhalten eine $010_2$, da unser Exponent drei Bits umfasst. Unsere Mantisse ist $1000_2$, da die 1 links vom Komma jetzt nur noch impliziert wird. Der Rest ist mit 0 aufgefüllt, damit wir 4 Bits für die Mantisse bekommen. Alles zusammengefasst erhalten wir diese Gleitkommazahl:\\
+
+$$00101000_2$$
+
+\paragraph{(c)} Begründen Sie, welche Bit-Folgen die kleinste positive Zahl (ungleich 0) sowie die größte positive Zahl (ungleich unendlich) repräsentieren. Beachten Sie dabei die oben erklärten
+Sonderrollen der Exponenten 000 und 111. \newline
+
+\paragraph{(1)} kleinste positive Zahl $\neq$ 0.\newline
+
+\noindent Je größer unser Exponent ist, desto größer wird unsere Zahl, da wir bspw. die implizite 1 immer weiter nach links bringen und sie damit mit einer immer größer werdenden 2er-Potenz multipliziert wird. Daher ist unser kleinster Exponent: $001_2$. Wir müssen beachten, dass $000_2$ als Exponent nicht in Frage kommt, da dies für eine denormalisierte Zahl, eine subnormale Zahl, oder einfach die 0 stehen würde.\\ \\
+\noindent Unsere kleinstmögliche Mantisse ist $0000_2$, oder mit der impliziten 1 dann $1.0000_2$.\\ \\
+\noindent Da unsere Zahl positiv sein soll, wählen wir als Vorzeichen eine 0.
+
+\begin{enumerate} 
+    \item Exponent $001_2 = 1_{10}$.
+    \item Da unser $\overline{e} = 3$ subtrahieren wir 3 von 1 und erhalten -2.
+    \item Der Wert unserer kleinsten positiven Zahl ist also: $1.0000_2 \cdot 2^{-2} = 1 \cdot 0.25 = 0.25$. 
+\end{enumerate}
+
+\paragraph{(2)} größte positive Zahl $\neq$ $\infty$.\newline
+
+\noindent Wir wollen einen möglichst großen Exponenten, also wählen wir $110_2$. Wieder sei zu beachten, dass $111_2$ für den Exponenten nicht in Frage kommt, da dieser entweder Unendlichkeit, oder Undefinierheit repräsentiert.\\ \\
+\noindent Unsere größtmögliche Mantisse ist $1111_2$, oder mit der impliziten 1 dann $1.1111_2$.\\ \\
+\noindent Um die höchstmögliche Zahl zu erreichen, wählen wir als Vorzeichen eine 0.
+
+\begin{enumerate} 
+    \item Exponent $110_2 = 6_{10}$.
+    \item Da unser $\overline{e} = 3$ subtrahieren wir 3 von 6 und erhalten 3.
+    \item Der Wert unserer kleinsten positiven Zahl ist also: $1.1111_2 \cdot 2^{3} = 1.9375 \cdot 8 = 15.5$. 
+\end{enumerate}
+
+\end{document}
