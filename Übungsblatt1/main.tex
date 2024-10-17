@@ -67,19 +67,51 @@
 
 \paragraph{(a)}
 
+\paragraph{(1)}
+
 0110 0100\\
 
 \noindent Da das MSB 0 ist, handelt es sich bei der Binärzahl um eine positive Zahl.\\
 
 \noindent $0110\ 0100_2 = 0 \cdot 2^7 + 1 \cdot 2^6 + 1 \cdot 2^5 + 0 \cdot 2^4 + 0 \cdot 2^3 + 1 \cdot 2^2 + 0 \cdot 2^1 + 0 \cdot 2^0 = 100$ 
 
-\paragraph{(b)}
+\paragraph{(2)}
 
 1100 0110\\
 
 \noindent Da das MSB 1 ist, handelt es sich bei der Binärzahl um eine negative Zahl.\\
 
 \noindent $1100\ 0110_2 = -1 \cdot 2^7 + 1 \cdot 2^6 + 0 \cdot 2^5 + 0 \cdot 2^4 + 0 \cdot 2^3 + 1 \cdot 2^2 + 1 \cdot 2^1 + 0 \cdot 2^0 = -58$
+
+\paragraph{(b)}
+
+\noindent Nun addieren wir die beiden Zahlen schriftlich als Binärzahlen.
+
+\[
+0110\ 0100_2 = 100
+\]
+\[
+1100\ 0110_2 = -58
+\]
+
+\noindent Addition der beiden Zahlen:
+
+\[
+\begin{array}{c@{}c@{}c@{}c@{}c@{}c@{}c@{}c@{}c}
+  & 0 & 1 & 1 & 0 & 0 & 1 & 0 & 0 \\
++ & 1 & 1 & 0 & 0 & 0 & 1 & 1 & 0 \\
+\hline
+  & 0 & 0 & 1 & 0 & 1 & 0 & 1 & 0 \\
+\end{array}
+\]
+
+\noindent Das Ergebnis ist \(0010\ 1010_2\), und wenn wir diese Binärzahl in eine Dezimalzahl umrechnen:
+
+\[
+0010\ 1010_2 = 0 \cdot 2^7 + 0 \cdot 2^6 + 1 \cdot 2^5 + 0 \cdot 2^4 + 1 \cdot 2^3 + 0 \cdot 2^2 + 1 \cdot 2^1 + 0 \cdot 2^0 = 42
+\]
+
+\noindent Das Ergebnis der Addition ist also \(42\) als Dezimalzahl.
 
 \paragraph{Aufgabe 4}
 
@@ -144,14 +176,13 @@ Sonderrollen der Exponenten 000 und 111. \newline
 
 \paragraph{(1)} kleinste positive Zahl $\neq$ 0.\newline
 
-\noindent Je größer unser Exponent ist, desto größer wird unsere Zahl, da wir bspw. die implizite 1 immer weiter nach links bringen und sie damit mit einer immer größer werdenden 2er-Potenz multipliziert wird. Daher ist unser kleinster Exponent: $001_2$. Wir müssen beachten, dass $000_2$ als Exponent nicht in Frage kommt, da dies für eine denormalisierte Zahl, eine subnormale Zahl, oder einfach die 0 stehen würde.\\ \\
-\noindent Unsere kleinstmögliche Mantisse ist $0000_2$, oder mit der impliziten 1 dann $1.0000_2$.\\ \\
+\noindent Je größer unser Exponent ist, desto größer wird unsere Zahl, da wir bspw. die implizite 1 immer weiter nach links bringen und sie damit mit einer immer größer werdenden 2er-Potenz multipliziert wird. Daher ist unser kleinster Exponent: $000_2$.\\ \\
+\noindent Unsere kleinstmögliche Mantisse ist $0001_2$, oder mit der impliziten 0 dann $0.0000_2$, da im Falle $0000_2$ unsere Zahl 0 werden würde, was sich mit der Voraussetzung, die kleinste positive Zahl zu finden, nicht verträgt.\\ \\
 \noindent Da unsere Zahl positiv sein soll, wählen wir als Vorzeichen eine 0.
 
 \begin{enumerate} 
-    \item Exponent $001_2 = 1_{10}$.
-    \item Da unser $\overline{e} = 3$ subtrahieren wir 3 von 1 und erhalten -2.
-    \item Der Wert unserer kleinsten positiven Zahl ist also: $1.0000_2 \cdot 2^{-2} = 1 \cdot 0.25 = 0.25$. 
+    \item Da wir durch die Wahl des Exponenten eine denormalisierte Zahl erhalten, wird der Exponent durch Verschiebung von 1 festgelegt, also $1 - 3 = -2$.
+    \item Der Wert unserer kleinsten positiven Zahl ist also: $0.0001_2 \cdot 2^{-2} = \frac{1}{16} \cdot \frac{1}{4} = \frac{1}{64} = 0.015625$. 
 \end{enumerate}
 
 \paragraph{(2)} größte positive Zahl $\neq$ $\infty$.\newline
