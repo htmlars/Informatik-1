@@ -1,0 +1,135 @@
+\documentclass[12pt, letterpaper]{article}
+\usepackage{amsmath} % Required for mathematical symbols
+\usepackage{amssymb} % Required for more mathematical symbols
+\usepackage{amsthm}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{enumitem} % For smaller bullet points
+\usepackage{hyperref}
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=20mm,
+ top=20mm,
+ }
+
+\title{Informatik 1 Übung 1}
+\author{Lars Schlichting, Hendrik Kleine Vennekate}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\paragraph{Aufgabe 1}
+
+In der Vorlesung haben Sie die Konkatenation von Wörtern kennengelernt. Betrachten Sie die Wörter $u = Hallo, v = Welt, w = \epsilon$. Geben Sie die durch Konkatenation gebildeten Wörter $uv, wv, uwwu$ an. Welche Länge besitzen diese Wörter?
+
+\begin{enumerate}
+    \item $uv$: $HalloWelt$, $\mid uv \mid=9$ 
+    \item $wv$: $Welt$, $\mid wv \mid=4$ 
+    \item $uwwu$: $HalloHallo$, $\mid uv \mid=10$ 
+\end{enumerate}
+
+\paragraph{Aufgabe 2}
+
+Wie Sie wissen, bezeichnet $\sum^{*}$ die Menge aller Wörter über dem Alphabet $\sum$.
+
+\paragraph{(a)}
+Die Menge der Wörter über dem leeren Alphabet beträgt \textbf{1}, da das leere Wort $\epsilon$ ein Wort über $\sum$ ist. 
+
+\paragraph{(b)}
+(i)\\
+
+\noindent Alle Präfixe des Wortes $100$:
+\begin{enumerate}
+    \item $1$, $r = 00$
+    \item $10$, $r = 0$
+    \item $100$, $r = \epsilon$
+\end{enumerate}
+\noindent Alle Suffixe des Wortes $100$:
+\begin{enumerate}
+    \item $0$, $t = 10$
+    \item $00$, $t = 1$
+    \item $100$, $t = \epsilon$
+\end{enumerate}
+
+\noindent (ii) Da das Wort \(100\) nur die Zeichen \(1\) und \(0\) enthält, können wir daraus schließen, dass das zugrunde liegende Alphabet \(\Sigma = \{0, 1\}\) = binäres Alphabet ist.
+
+
+\paragraph{Aufgabe 3}
+
+Gegeben sei die Turingmaschine $M = (Q, \Sigma, \Gamma, \delta, q_1, \# , \{q_6\})$ mit
+\begin{itemize}
+    \item $Q = \{q_1, \ldots, q_6\}$,
+    \item $\Sigma = \{0, 1, .\}$ (drei Zeichen, nämlich Null, Eins und Punkt),
+    \item $\Gamma = \Sigma \cup \{\#\}$ und
+    \item $\delta$ definiert durch folgende Tabelle:
+\end{itemize}
+
+\[
+\begin{array}{|c|c|c|c|c|}
+\hline
+   & 0 & 1 & . & \# \\
+  \hline
+  q_1 & q_2, 0, R & q_2, 1, R & q_5, ., S & q_5, \#, S \\
+  q_2 & q_2, 0, R & q_2, 1, R & q_3, ., R & q_5, \#, S \\
+  q_3 & q_4, 0, R & q_4, 1, R & q_5, ., S & q_5, \#, S \\
+  q_4 & q_4, 0, R & q_4, 1, R & q_5, ., S & q_6, \#, S \\
+  q_5 & q_5, 0, S & q_5, 1, S & q_5, ., S & q_5, \#, S \\
+  \hline
+\end{array}
+\]\\
+
+
+\noindent Von $M$ werden alle Wörter akzeptiert, in denen mind. ein "." vorkommt. Vor und nach dem Punkt dürfen beliebig viele $0$, oder $1$ stehen, jedoch muss mind. 1 vorhanden sein. Am Ende des Wortes muss eine Raute stehen, um die Maschine in den Endzustand $q_6$ zu überführen. Alles andere ist unzulässig und führt nie zur Terminierung der Maschine. Alle Zeichen werden während dieses Vorgangs nicht verändert.
+
+\begin{enumerate}
+    \item Zustand prüft, ob das Wort mit einer Binärzahl startet
+    \item Zustand sorgt dafür, dass man beliebig viele weitere Binärzahlen hinzufügen kann und überführt in Zustand 3 im Falle eines Punktes.
+    \item Zustand prüft analog zu Zustand 1, dass dem Punkt eine Binärzahl folgt.
+    \item Zustand erlaubt, dass beliebig viele Binärzahlen bis zum Ende des Wortes folgen dürfen. Überführt beim Wortende in Endzustand.
+    \item Zustand sorgt für einen Stop des LS-Kopfes.
+\end{enumerate}
+
+\paragraph{Aufgabe 4}
+
+\noindent Als zusätzliches Zeichen haben wir das $a$ genommen, um als Markierung für das vorab Gezählte zu dienen. Dieses taucht maximal 1 mal zeitgleich auf.
+
+Gegeben sei die Turingmaschine $M = (Q, \Sigma, \Gamma, \delta, q_1, \# , \{q_8\})$ mit
+\begin{itemize}
+    \item $Q = \{q_1, \ldots, q_8\}$,
+    \item $\Sigma = \{0, 1\}$,
+    \item $\Gamma = \Sigma \cup \{\#\}$ und
+    \item $\delta$ definiert durch folgende Tabelle:
+\end{itemize}
+
+\[\]
+\begin{array}{|c|c|c|c|c|}
+\hline
+\text{} & 0 & 1 & a & \# \\
+\hline
+q_1 & q_2, a, L & q_2, a, L & q_2, a, S & q_8, 0, S \\
+q_2 & q_3, 1, R & q_2, 0, L & q_2, a, S & q_3, 1, R \\
+q_3 & q_3, 0, R & q_3, 1, R & q_4, \#, R & q_3, \#, R \\
+q_4 & q_5, a, L & q_5, a, L & q_2, a, S & q_6, \#, L \\
+q_5 & q_3, 1, R & q_2, 0, L & q_2, a, S & q_5, \#, L \\
+q_6 & q_7, 0, L & q_7, 1, L & q_2, a, S & q_6, \#, L \\
+q_7 & q_7, 0, L & q_7, 1, L & q_2, a, S & q_8, \#, R \\
+\hline
+\end{array}
+\]
+
+\begin{enumerate}
+    \item Zustand detektiert das erste Bit und überschreibt dieses mit $a$. Falls das Eingabewort leer sein sollte, wird eine 0 geschrieben und in den Endzustand 8 gewechselt.
+    \item Zustand addiert binär eine 1 auf unsere Summe und geht anschließend in Zustand 3.
+    \item Zustand geht solange nach rechts, bis er auf die Markierung $a$ trifft, diese entfernt und in Zustand 4 wechselt.
+    \item Zustand schreibt bei einer $1$, oder $0$ ein $a$, um die neue Markierung zu setzen und in Zustand 5 zu wechseln. Falls das Wort endet, wird in Zustand 6 gegangen.
+    \item Zustand geht solange nach links, bis er auf die Summe trifft. Wenn das LSB eine 0 ist, wird eine 1 dazuaddiert und wird wieder iterativ in Zustand 3 gegangen. Bei einer 1 haben wir einen Übertrag und dieser wird in Zustand 2 behandelt.
+    \item Zustand sorgt dafür, dass wir zum Ende unserer Summe kommen und überführt in Zustand 7.
+    \item Zustand sorgt dafür, dass der Lese-/Schreibkopf auf dem MSB endet und in den Endzustand 8 überführt.
+\end{enumerate}
+
+\noindent Im Abgabeordner finden Sie außerdem eine JSON-Datei, die in den auf dem Übungsblatt stehenden Turing Machine Simulator importiert werden kann. Auf der Website muss man jedoch den Leseschreibkopf auf das erste Bit ziehen und den Startzustand auf $1$ setzen.
+
+\end{document}
